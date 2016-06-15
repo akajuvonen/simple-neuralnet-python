@@ -22,6 +22,9 @@ class NeuralNet():
     def train(self):
         pass
 
+    def classify(self):
+        pass
+
 def main():
     pass
 
