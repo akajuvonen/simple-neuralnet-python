@@ -26,7 +26,7 @@ class NeuralNet():
         pass
 
 def main():
-    pass
+    nn = NeuralNet()
 
 if __name__=='__main__':
     main()
