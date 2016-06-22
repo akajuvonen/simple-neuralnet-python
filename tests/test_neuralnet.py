@@ -3,4 +3,5 @@ from neuralnet import NeuralNet
 
 class NeuralNetTest(unittest.TestCase):
     def setUp(self):
-        pass
+        """Setup method for neural net tests"""
+        self.net = NeuralNet()
