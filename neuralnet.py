@@ -6,7 +6,7 @@ class NeuralNet():
     def __init__(self):
         pass
 
-    def _sigmoid(self,x,deriv):
+    def _sigmoid(self,x,deriv=False):
         """The sigmoid function (or it's derivative).
         Arguments:
         x -- The weighted sum of an input
