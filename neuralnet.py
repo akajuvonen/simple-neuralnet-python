@@ -15,7 +15,7 @@ class NeuralNet():
         The sigmoid function value, or the derivative if needed.
         """
         if deriv:
-            return x*(1-x)
+            return self._sigmoid(x)*(1-self._sigmoid(x))
         else:
             return 1/(1+exp(-x))
 
