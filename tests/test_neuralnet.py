@@ -20,3 +20,18 @@ class NeuralNetTest(unittest.TestCase):
         i=10
         result = self.net._sigmoid(i)
         self.assertTrue(result>0.9)
+
+    def testSigmoidDerivative(self):
+        """Sigmoid deritative tests"""
+        # Should be close to 0
+        i=-10
+        result = self.net._sigmoid(i,True)
+        self.assertTrue(result<0.1)
+        # Should be 0.25
+        i=0
+        result = self.net._sigmoid(i,True)
+        self.assertEquals(result,0.25)
+        # Should be close to 0
+        i=10
+        result = self.net._sigmoid(i,True)
+        self.assertTrue(result<0.1)
