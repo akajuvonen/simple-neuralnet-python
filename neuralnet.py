@@ -6,23 +6,17 @@ class NeuralNet():
     def __init__(self):
         pass
 
-    def _sigmoid(self,x,deriv=False):
+    def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
         Arguments:
         x -- The weighted sum of an input
-        deriv -- Boolean, if True, we return the sigmoid derivative
         Returns:
-        The sigmoid function value, or the derivative if needed.
+        The sigmoid function value.
         """
-        if deriv:
-            # Calculate the sigmoid derivative.
-            # We use recursion because it looks better and
-            # makes the code simple. There are faster ways of
-            # doing this.
-            return self._sigmoid(x)*(1-self._sigmoid(x))
-        else:
-            # Calculate the sigmoid
-            return 1/(1+exp(-x))
+        return 1/(1+exp(-x))
+
+    def _sigmoid_deriv(self,y):
+        return y*(1-y)
 
     def train(self):
         pass
