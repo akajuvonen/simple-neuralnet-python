@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from neuralnet import NeuralNet
+import matplotlib.pyplot as plt
 
 def main():
     net = NeuralNet()
@@ -10,8 +11,8 @@ def main():
     sigmoid_deriv_values = []
     for i in sigmoid_values:
         sigmoid_deriv_values.append(net._sigmoid_deriv(i))
-    print(sigmoid_values)
-    print(sigmoid_deriv_values)
+    plt.plot(range(-10,11),sigmoid_values)
+    plt.show()
 
 if __name__=='__main__':
     main()
