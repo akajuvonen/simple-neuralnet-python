@@ -10,7 +10,8 @@ class Layer():
         neurons -- How many neurons in this layer (int)
         inputs -- How many inputs per neuron (int)
         """
-        self.weights = random((inputs,neurons))
+        # Weights are between -1 and 1
+        self.weights = 2*random((inputs,neurons))-1
 
 def main():
     # Create a layer and print its weights
