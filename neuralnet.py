@@ -27,7 +27,13 @@ class NeuralNet():
         """
         return y*(1-y)
 
-    def train(self):
+    def train(self,inputs,outputs,iterations=10000):
+        """Train the neural network using a training set.
+        Arguments:
+        inputs -- The input data from a training set (array)
+        outputs -- The correct outputs from the training set (array)
+        iterations -- How many iterations to train the network (int, default=10000)
+        """
         pass
 
     def classify(self):
