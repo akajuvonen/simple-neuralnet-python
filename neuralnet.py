@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 from numpy import exp
+from layer import Layer
 
 class NeuralNet():
     def __init__(self):
-        pass
+        """The init method."""
+        # A list of Layer-objects
+        layers = []
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
