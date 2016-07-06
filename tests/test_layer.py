@@ -1,5 +1,6 @@
 import unittest
 from layer import Layer
+from numpy import amax,amin
 
 class NeuralNetTest(unittest.TestCase):
     """Tests for Layer class"""
@@ -13,4 +14,9 @@ class NeuralNetTest(unittest.TestCase):
 
     def testLayerWeights(self):
         """Layer weight test"""
-        pass
+        # Make sure that the layer weights array is the right shape
+        self.assertEqual(self.layer.weights.shape,(3,5))
+        # Test that the min and max of weights are between -1 and 1
+        self.assertTrue(amax(self.layer.weights)<=1.0)
+        self.assertTrue(amin(self.layer.weights)>=-1.0)
+
