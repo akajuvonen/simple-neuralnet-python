@@ -2,6 +2,7 @@ import unittest
 from neuralnet import NeuralNet
 
 class NeuralNetTest(unittest.TestCase):
+    """Tests for NeuralNet class"""
     def setUp(self):
         """Setup method for neural net tests"""
         self.net = NeuralNet()
