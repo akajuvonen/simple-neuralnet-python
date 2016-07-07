@@ -7,7 +7,7 @@ class NeuralNet():
     def __init__(self):
         """The init method."""
         # A list of Layer-objects
-        layers = []
+        self.layers = []
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
