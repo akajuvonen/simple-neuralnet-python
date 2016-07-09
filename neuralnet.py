@@ -8,6 +8,7 @@ class NeuralNet():
         Arguments:
         train_in -- Training set inputs (array)
         train_out -- Training set outputs (array)
+        iterations -- How many iterations run in training (int)
         """
         self.train_in = train_in
         self.train_out = train_out
