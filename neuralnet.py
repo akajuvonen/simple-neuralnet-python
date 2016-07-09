@@ -1,12 +1,17 @@
 #!/usr/bin/env python
 
-from numpy import exp
+import numpy as np
 
 class NeuralNet():
-    def __init__(self):
-        """The init method."""
-        # A list of Layer-objects
-        self.weights = []
+    def __init__(self,train_in,train_out,iterations=10000):
+        """The init method.
+        Arguments:
+        train_in -- Training set inputs (array)
+        train_out -- Training set outputs (array)
+        """
+        self.train_in = train_in
+        self.train_out = train_out
+        self.iterations = iterations
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
@@ -15,7 +20,7 @@ class NeuralNet():
         Returns:
         The sigmoid function value.
         """
-        return 1/(1+exp(-x))
+        return 1/(1+np.exp(-x))
 
     def _sigmoid_deriv(self,y):
         """The sigmoid derivative function.
@@ -29,7 +34,7 @@ class NeuralNet():
         """
         return y*(1-y)
 
-    def train(self,inputs,outputs,iterations=10000):
+    def train(self,inputs,outputs,iterations):
         """Train the neural network using a training set.
         Arguments:
         inputs -- The input data from a training set (array)
@@ -42,7 +47,9 @@ class NeuralNet():
         pass
 
 def main():
-    nn = NeuralNet()
+    train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
+    train_out = np.array([[1],[0],[1],[1]])
+    nn = NeuralNet(train_in,train_out)
 
 if __name__=='__main__':
     main()
