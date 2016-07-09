@@ -14,6 +14,11 @@ class NeuralNet():
         self.train_in = train_in
         self.train_out = train_out
         self.iterations = iterations
+        # Init weights between -1 and 1
+        # Weights between input and hidden layer
+        weights_1 = 2*np.random.random(train_in.shape)-1
+        # Weights between hidden and output layer
+        weights_2 = 2*np.random.random(hl_size)-1
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
