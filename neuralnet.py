@@ -16,6 +16,7 @@ class NeuralNet():
         self.iterations = iterations
         # Init weights between -1 and 1
         # Weights between input and hidden layer
+        # Notice that the shape tuple is inverted here using [::-1]
         self.weights_1 = 2*np.random.random(train_in.shape[::-1])-1
         # Weights between hidden and output layer
         self.weights_2 = 2*np.random.random(hl_size)-1
@@ -49,6 +50,13 @@ class NeuralNet():
         hidden_layer,output_layer = self.classify(self.train_in)
 
     def classify(self,inputs):
+        """Classify given data using the neural network.
+        Arguments:
+        inputs -- The input data (array)
+        Returns:
+        hidden_layer -- The hidden layer values (usually not needed)
+        output_layer -- The classification results (array)
+        """
         hidden_layer = self._sigmoid(np.dot(inputs,self.weights_1))
         output_layer = self._sigmoid(np.dot(hidden_layer,self.weights_2))
         return hidden_layer,output_layer
