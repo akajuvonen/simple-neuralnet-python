@@ -47,19 +47,24 @@ class NeuralNet():
     def train(self):
         """Train the neural network using a training set."""
         # First, classify the training data using the network
-        hidden_layer,output_layer = self.classify(self.train_in)
+        hidden_layer,output_layer = self.classify(self.train_in,True)
 
-    def classify(self,inputs):
+    def classify(self,inputs,training=False):
         """Classify given data using the neural network.
         Arguments:
         inputs -- The input data (array)
+        training -- If classify used for network training, also returns
+          hidden layer (boolean)
         Returns:
         hidden_layer -- The hidden layer values (usually not needed)
         output_layer -- The classification results (array)
         """
         hidden_layer = self._sigmoid(np.dot(inputs,self.weights_1))
         output_layer = self._sigmoid(np.dot(hidden_layer,self.weights_2))
-        return hidden_layer,output_layer
+        if training:
+            return hidden_layer,output_layer
+        else:
+            return output_layer
 
 def main():
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
