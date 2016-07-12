@@ -16,11 +16,11 @@ class NeuralNet():
         self.iterations = iterations
         # Init weights between -1 and 1
         # Weights between input and hidden layer
-        weights_1 = 2*np.random.random(train_in.shape)-1
+        self.weights_1 = 2*np.random.random(train_in.shape)-1
         # Weights between hidden and output layer
-        weights_2 = 2*np.random.random(hl_size)-1
+        self.weights_2 = 2*np.random.random(hl_size)-1
         # Train the network
-        self.train(self.train_in,self.train_out,self.iterations)
+        self.train()
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
@@ -43,17 +43,15 @@ class NeuralNet():
         """
         return y*(1-y)
 
-    def train(self,inputs,outputs,iterations):
-        """Train the neural network using a training set.
-        Arguments:
-        inputs -- The input data from a training set (array)
-        outputs -- The correct outputs from the training set (array)
-        iterations -- How many iterations to train the network (int, default=10000)
-        """
-        pass
+    def train(self):
+        """Train the neural network using a training set."""
+        # First, classify the training data using the network
+        hidden_layer,output_layer = self.classify(self.train_in)
 
-    def classify(self):
-        pass
+    def classify(self,inputs):
+        hidden_layer = self._sigmoid(np.dot(inputs,self.weights_1))
+        output_layer = self._sigmoid(np.dot(hidden_layer,self.weights_2))
+        return hidden_layer,output_layer
 
 def main():
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
