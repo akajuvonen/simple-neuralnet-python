@@ -16,7 +16,7 @@ class NeuralNet():
         self.iterations = iterations
         # Init weights between -1 and 1
         # Weights between input and hidden layer
-        self.weights_1 = 2*np.random.random(train_in.shape)-1
+        self.weights_1 = 2*np.random.random(train_in.shape[::-1])-1
         # Weights between hidden and output layer
         self.weights_2 = 2*np.random.random(hl_size)-1
         # Train the network
