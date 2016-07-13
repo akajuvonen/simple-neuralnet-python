@@ -48,6 +48,15 @@ class NeuralNet():
         """Train the neural network using a training set."""
         # First, classify the training data using the network
         hidden_layer,output_layer = self.classify(self.train_in,True)
+        # Calculate errors and adjustments
+        output_error = self.train_out - output_layer
+        output_adjustment = output_error * self._sigmoid_deriv(output_layer)
+        hidden_error = output_adjustment.dot(self.weights_2.T)
+        hidden_adjustment = hidden_error * self._sigmoid_deriv(hidden_layer)
+        # Actually adjust the weights
+        self.weights_2 += hidden_layer.T.dot(output_adjustment)
+        self.weights_1 += self.train_in.T.dot(hidden_adjustment)
+
 
     def classify(self,inputs,training=False):
         """Classify given data using the neural network.
