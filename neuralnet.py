@@ -71,15 +71,18 @@ class NeuralNet():
         """
         hidden_layer = self._sigmoid(np.dot(inputs,self.weights_1))
         output_layer = self._sigmoid(np.dot(hidden_layer,self.weights_2))
+        # Return also hidden layer for training
         if training:
             return hidden_layer,output_layer
         else:
             return output_layer
 
 def main():
+    # Training data inputs and outputs
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
     train_out = np.array([[1],[0],[1],[1]])
     nn = NeuralNet(train_in,train_out,(4,1))
+    # TODO: Test data
 
 if __name__=='__main__':
     main()
