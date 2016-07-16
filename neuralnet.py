@@ -79,10 +79,10 @@ class NeuralNet():
 
 def main():
     # Training data inputs and outputs
-    train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
-    train_out = np.array([[1],[0],[1],[1]])
+    train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0],[0,1,0],[0,0,0]])
+    train_out = np.array([[1],[0],[1],[1],[0],[0]])
     # Train the network
-    nn = NeuralNet(train_in,train_out,(4,1))
+    nn = NeuralNet(train_in,train_out,(6,1))
     # Test data
     test_in = np.array([[1,0,1],[0,1,0],[1,1,1]])
     # Classify
