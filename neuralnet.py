@@ -81,8 +81,13 @@ def main():
     # Training data inputs and outputs
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0]])
     train_out = np.array([[1],[0],[1],[1]])
+    # Train the network
     nn = NeuralNet(train_in,train_out,(4,1))
-    # TODO: Test data
+    # Test data
+    test_in = np.array([[1,0,1],[0,1,0],[1,1,1]])
+    # Classify
+    train_out = nn.classify(test_in)
+    print(train_out)
 
 if __name__=='__main__':
     main()
