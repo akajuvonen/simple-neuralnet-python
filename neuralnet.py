@@ -3,7 +3,7 @@
 import numpy as np
 
 class NeuralNet():
-    def __init__(self,train_in,train_out,hl_size,iterations=10000):
+    def __init__(self,train_in,train_out,hl_size,iterations=60000):
         """The init method.
         Arguments:
         train_in -- Training set inputs (array)
