@@ -18,7 +18,7 @@ class NeuralNet():
         # Notice that the shape tuple is inverted here using [::-1]
         self.weights_1 = 2*np.random.random((train_in.shape[1],hidden_size))-1
         # Weights between hidden and output layer
-        self.weights_2 = 2*np.random.random((hidden_size,1))-1
+        self.weights_2 = 2*np.random.random((hidden_size,train_out.shape[1]))-1
         # Train the network
         self.train()
 
