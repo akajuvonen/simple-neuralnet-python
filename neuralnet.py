@@ -8,6 +8,7 @@ class NeuralNet():
         Arguments:
         train_in -- Training set inputs (array)
         train_out -- Training set outputs (array)
+        hidden_size -- How many neurons in hidden layer (int)
         iterations -- How many iterations run in training (int)
         """
         self.train_in = train_in
