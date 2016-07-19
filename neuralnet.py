@@ -3,7 +3,7 @@
 import numpy as np
 
 class NeuralNet():
-    def __init__(self,train_in,train_out,iterations=60000):
+    def __init__(self,train_in,train_out,hidden_size=4,iterations=60000):
         """The init method.
         Arguments:
         train_in -- Training set inputs (array)
@@ -16,9 +16,9 @@ class NeuralNet():
         # Init weights between -1 and 1
         # Weights between input and hidden layer
         # Notice that the shape tuple is inverted here using [::-1]
-        self.weights_1 = 2*np.random.random(train_in.shape[::-1])-1
+        self.weights_1 = 2*np.random.random((train_in.shape[1],hidden_size))-1
         # Weights between hidden and output layer
-        self.weights_2 = 2*np.random.random((len(train_in),1))-1
+        self.weights_2 = 2*np.random.random((hidden_size,1))-1
         # Train the network
         self.train()
 
