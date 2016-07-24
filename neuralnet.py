@@ -79,6 +79,7 @@ class NeuralNet():
 
 def main():
     # Training data inputs and outputs
+    # Notice that the outputs correlate to the first element of each data point
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0],[0,1,0],[0,0,0]])
     train_out = np.array([[1],[0],[1],[1],[0],[0]])
     # Train the network
@@ -87,6 +88,7 @@ def main():
     test_in = np.array([[1,0,1],[0,1,0],[1,1,1]])
     # Classify
     train_out = nn.classify(test_in)
+    # Should print approx. 1 0 1
     print(train_out)
 
 if __name__=='__main__':
