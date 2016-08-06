@@ -27,7 +27,7 @@ def main():
     for i in range(len(Y)):
         Y_bin[i][Y[i]] = 1
     # Init and train the neural network
-    net = NeuralNet(X,Y_bin)
+    net = NeuralNet(X[train_idx],Y_bin[train_idx])
 
 if __name__=='__main__':
     main()
