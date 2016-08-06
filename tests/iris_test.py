@@ -2,6 +2,8 @@
 
 from sklearn import datasets
 from random import shuffle
+import numpy as np
+from neuralnet import NeuralNet
 
 # This example loads the IRIS dataset and classifies
 # using our neural network implementation.
@@ -19,6 +21,11 @@ def main():
     # The int conversion is needed in python 3, I think (for odd number of indexes)
     train_idx = idx[:int(len(idx)/2)]
     test_idx = idx[int(len(X)/2):]
+    # Initialize zero matrix for outputs in binary form
+    Y_bin = np.zeros((len(Y),3),dtype=np.int)
+    # Convert output from int to binary representation for neural network
+    for i in range(len(Y)):
+        Y_bin[i][Y[i]] = 1
 
 if __name__=='__main__':
     main()
