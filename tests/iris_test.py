@@ -29,7 +29,18 @@ def main():
     net = NeuralNet(X[train_idx],Y_bin[train_idx])
     # Classify
     results = net.classify(X[test_idx])
-    print(np.rint(results).astype(int))
+    # Round and convert to int
+    results = np.rint(results).astype(int)
+    # Counter for successful classifications
+    ok_count = 0
+    # Calculate the count
+    for i in range(len(results)):
+        if (results[i]==Y_bin[test_idx[i]]).all():
+            ok_count+=1
+    # How many per cent did we get right
+    ok_percentage = float(ok_count) / len(results) * 100
+    # Print the result
+    print('Correctly classified ' + str(ok_percentage) + '% of the testing points')
 
 if __name__=='__main__':
     main()
