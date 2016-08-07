@@ -48,11 +48,16 @@ class NeuralNet():
 
     def train(self):
         """Train the neural network using a training set."""
+        i=0
         for _ in range(self.iterations):
             # First, classify the training data using the network
             hidden_layer,output_layer = self.classify(self.train_in,True)
             # Calculate errors and adjustments
             output_error = self.train_out - output_layer
+            # Print the error every 1000 iterations
+            if i%1000==0:
+                print(abs(np.mean(output_error)))
+            i+=1
             output_adjustment = output_error*self.learning_rate * self._sigmoid_deriv(output_layer)
             hidden_error = output_adjustment.dot(self.weights_2.T)
             hidden_adjustment = hidden_error*self.learning_rate * self._sigmoid_deriv(hidden_layer)
