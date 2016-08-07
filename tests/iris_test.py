@@ -29,9 +29,7 @@ def main():
     net = NeuralNet(X[train_idx],Y_bin[train_idx])
     # Classify
     results = net.classify(X[test_idx])
-    print(results)
-    # The current nn implementation seems unable to classify the iris data correctly
-    # It works well with the simple test case in the neuralnet.py file
+    print(np.rint(results))
 
 if __name__=='__main__':
     main()
