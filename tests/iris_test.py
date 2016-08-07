@@ -17,10 +17,9 @@ def main():
     # Shuffle randomizes idx in place
     idx = range(len(X))
     shuffle(idx)
-    # Split the shuffled indexes into half, to training and test
-    # The int conversion is needed in python 3, I think (for odd number of indexes)
-    train_idx = idx[:int(len(idx)/2)]
-    test_idx = idx[int(len(X)/2):]
+    # Split the shuffled indexes into training and test
+    train_idx = idx[:99]
+    test_idx = idx[100:]
     # Initialize zero matrix for outputs in binary form
     Y_bin = np.zeros((len(Y),3),dtype=np.int)
     # Convert output from int to binary representation for neural network
@@ -28,6 +27,9 @@ def main():
         Y_bin[i][Y[i]] = 1
     # Init and train the neural network
     net = NeuralNet(X[train_idx],Y_bin[train_idx])
+    # Classify
+    results = net.classify(X[test_idx])
+    print(results)
 
 if __name__=='__main__':
     main()
