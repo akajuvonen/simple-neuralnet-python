@@ -29,7 +29,7 @@ def main():
     net = NeuralNet(X[train_idx],Y_bin[train_idx])
     # Classify
     results = net.classify(X[test_idx])
-    print(np.rint(results))
+    print(np.rint(results).astype(int))
 
 if __name__=='__main__':
     main()
