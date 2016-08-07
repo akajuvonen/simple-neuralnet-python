@@ -3,17 +3,19 @@
 import numpy as np
 
 class NeuralNet():
-    def __init__(self,train_in,train_out,hidden_size=4,iterations=60000):
+    def __init__(self,train_in,train_out,hidden_size=4,iterations=60000,learning_rate=0.15):
         """The init method.
         Arguments:
         train_in -- Training set inputs (array)
         train_out -- Training set outputs (array)
         hidden_size -- How many neurons in hidden layer (int)
         iterations -- How many iterations run in training (int)
+        learning_rate -- Smaller LR means smaller jumps when learning
         """
         self.train_in = train_in
         self.train_out = train_out
         self.iterations = iterations
+        self.learning_rate = learning_rate
         # Init weights between -1 and 1
         # Weights between input and hidden layer
         # Notice that the shape tuple is inverted here using [::-1]
@@ -51,9 +53,9 @@ class NeuralNet():
             hidden_layer,output_layer = self.classify(self.train_in,True)
             # Calculate errors and adjustments
             output_error = self.train_out - output_layer
-            output_adjustment = output_error * self._sigmoid_deriv(output_layer)
+            output_adjustment = output_error*self.learning_rate * self._sigmoid_deriv(output_layer)
             hidden_error = output_adjustment.dot(self.weights_2.T)
-            hidden_adjustment = hidden_error * self._sigmoid_deriv(hidden_layer)
+            hidden_adjustment = hidden_error*self.learning_rate * self._sigmoid_deriv(hidden_layer)
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += self.train_in.T.dot(hidden_adjustment)
