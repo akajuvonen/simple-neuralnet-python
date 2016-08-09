@@ -3,7 +3,7 @@
 import numpy as np
 
 class NeuralNet():
-    def __init__(self,train_in,train_out,hidden_size=4,iterations=60000,learning_rate=0.15):
+    def __init__(self,train_in,train_out,hidden_size=4,max_iterations=100000,learning_rate=0.15):
         """The init method.
         Arguments:
         train_in -- Training set inputs (array)
@@ -14,7 +14,7 @@ class NeuralNet():
         """
         self.train_in = train_in
         self.train_out = train_out
-        self.iterations = iterations
+        self.max_iterations = max_iterations
         self.learning_rate = learning_rate
         # Init weights between -1 and 1
         # Weights between input and hidden layer
@@ -49,7 +49,7 @@ class NeuralNet():
     def train(self):
         """Train the neural network using a training set."""
         i=0
-        for _ in range(self.iterations):
+        for _ in range(self.max_iterations):
             # First, classify the training data using the network
             hidden_layer,output_layer = self.classify(self.train_in,True)
             # Calculate errors and adjustments
