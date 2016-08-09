@@ -96,7 +96,8 @@ def main():
     # Classify
     train_out = nn.classify(test_in)
     # Should print approx. 1 0 1
-    print(train_out)
+    print('Test data classification results (should be 1 0 1):')
+    print(np.rint(train_out).astype(int))
 
 if __name__=='__main__':
     main()
