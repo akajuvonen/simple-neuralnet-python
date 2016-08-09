@@ -56,7 +56,9 @@ class NeuralNet():
             output_error = self.train_out - output_layer
             # Print the error every 1000 iterations
             if i%1000==0:
-                print(abs(np.mean(output_error)))
+                # Mean squared error
+                mse = np.mean(np.power(output_error,2))
+                print(mse)
             i+=1
             output_adjustment = output_error*self.learning_rate * self._sigmoid_deriv(output_layer)
             hidden_error = output_adjustment.dot(self.weights_2.T)
