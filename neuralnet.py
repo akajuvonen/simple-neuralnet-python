@@ -9,7 +9,7 @@ class NeuralNet():
         train_in -- Training set inputs (array)
         train_out -- Training set outputs (array)
         hidden_size -- How many neurons in hidden layer (int)
-        iterations -- How many iterations run in training (int)
+        iterations -- How many max iterations run in training (int)
         learning_rate -- Smaller LR means smaller jumps when learning
         """
         self.train_in = train_in
