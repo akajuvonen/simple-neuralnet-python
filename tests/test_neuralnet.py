@@ -6,7 +6,7 @@ class NeuralNetTest(unittest.TestCase):
     """Tests for NeuralNet class"""
     def setUp(self):
         """Setup method for neural net tests"""
-        self.net = NeuralNet()
+        self.net = NeuralNet(max_iterations=10000)
 
     def testSigmoid(self):
         """Sigmoid method tests"""
