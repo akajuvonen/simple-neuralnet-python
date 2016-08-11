@@ -1,5 +1,6 @@
 import unittest
 from neuralnet import NeuralNet
+import numpy as np
 
 class NeuralNetTest(unittest.TestCase):
     """Tests for NeuralNet class"""
@@ -40,3 +41,12 @@ class NeuralNetTest(unittest.TestCase):
         i=10
         result = self.net._sigmoid_deriv(self.net._sigmoid(i))
         self.assertTrue(result<0.1)
+
+    def testTrainedFlag(self):
+        """Test that the trained-flag works correctly"""
+        # Should be false before training
+        self.assertFalse(self.net.trained)
+        # Train the net
+        self.net.train(np.array([[1,0,0],[0,0,1],[1,0,1],[0,1,1]]),np.array([[1],[0],[1],[0]]))
+        # Now should be True after training
+        self.assertTrue(self.net.trained)
