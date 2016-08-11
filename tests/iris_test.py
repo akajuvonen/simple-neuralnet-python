@@ -25,8 +25,10 @@ def main():
     # Convert output from int to binary representation for neural network
     for i in range(len(Y)):
         Y_bin[i][Y[i]] = 1
-    # Init and train the neural network
-    net = NeuralNet(X[train_idx],Y_bin[train_idx])
+    # Init the neural network
+    net = NeuralNet()
+    # Train the network
+    net.train(X[train_idx],Y_bin[train_idx])
     # Classify
     results = net.classify(X[test_idx])
     # Round and convert to int
