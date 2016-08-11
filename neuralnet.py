@@ -88,8 +88,9 @@ def main():
     # Notice that the outputs correlate to the first element of each data point
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0],[0,1,0],[0,0,0]])
     train_out = np.array([[1],[0],[1],[1],[0],[0]])
-    # Train the network
+    # Init the network instance
     nn = NeuralNet()
+    # Train the network
     nn.train(train_in,train_out)
     # Test data
     test_in = np.array([[1,0,1],[0,1,0],[1,1,1]])
