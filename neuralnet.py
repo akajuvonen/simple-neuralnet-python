@@ -3,7 +3,7 @@
 import numpy as np
 
 class NeuralNet():
-    def __init__(self,train_in,train_out,hidden_size=4,max_iterations=100000,learning_rate=0.15):
+    def __init__(self,hidden_size=4,max_iterations=100000,learning_rate=0.15):
         """The init method.
         Arguments:
         train_in -- Training set inputs (array)
@@ -12,18 +12,9 @@ class NeuralNet():
         iterations -- How many max iterations run in training (int)
         learning_rate -- Smaller LR means smaller jumps when learning
         """
-        self.train_in = train_in
-        self.train_out = train_out
         self.max_iterations = max_iterations
         self.learning_rate = learning_rate
-        # Init weights between -1 and 1
-        # Weights between input and hidden layer
-        # Notice that the shape tuple is inverted here using [::-1]
-        self.weights_1 = 2*np.random.random((train_in.shape[1],hidden_size))-1
-        # Weights between hidden and output layer
-        self.weights_2 = 2*np.random.random((hidden_size,train_out.shape[1]))-1
-        # Train the network
-        self.train()
+        self.hidden_size = hidden_size
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
@@ -46,14 +37,20 @@ class NeuralNet():
         """
         return y*(1-y)
 
-    def train(self):
+    def train(self,train_in,train_out):
         """Train the neural network using a training set."""
+        # Init weights between -1 and 1
+        # Weights between input and hidden layer
+        # Notice that the shape tuple is inverted here using [::-1]
+        self.weights_1 = 2*np.random.random((train_in.shape[1],self.hidden_size))-1
+        # Weights between hidden and output layer
+        self.weights_2 = 2*np.random.random((self.hidden_size,train_out.shape[1]))-1
         i=0
         for _ in range(self.max_iterations):
             # First, classify the training data using the network
-            hidden_layer,output_layer = self.classify(self.train_in,True)
+            hidden_layer,output_layer = self.classify(train_in,True)
             # Calculate errors and adjustments
-            output_error = self.train_out - output_layer
+            output_error = train_out - output_layer
             # Print the error every 1000 iterations
             if i%1000==0:
                 # Mean squared error
@@ -65,7 +62,7 @@ class NeuralNet():
             hidden_adjustment = hidden_error*self.learning_rate * self._sigmoid_deriv(hidden_layer)
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
-            self.weights_1 += self.train_in.T.dot(hidden_adjustment)
+            self.weights_1 += train_in.T.dot(hidden_adjustment)
 
 
     def classify(self,inputs,training=False):
@@ -92,7 +89,8 @@ def main():
     train_in = np.array([[1,0,0],[0,0,1],[1,1,1],[1,1,0],[0,1,0],[0,0,0]])
     train_out = np.array([[1],[0],[1],[1],[0],[0]])
     # Train the network
-    nn = NeuralNet(train_in,train_out)
+    nn = NeuralNet()
+    nn.train(train_in,train_out)
     # Test data
     test_in = np.array([[1,0,1],[0,1,0],[1,1,1]])
     # Classify
