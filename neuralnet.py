@@ -15,6 +15,8 @@ class NeuralNet():
         self.max_iterations = max_iterations
         self.learning_rate = learning_rate
         self.hidden_size = hidden_size
+        # Is the network already trained
+        self.trained = False
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
@@ -63,6 +65,8 @@ class NeuralNet():
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
+        # Set the trained flag to True
+        self.trained = True
 
 
     def classify(self,inputs,training=False):
