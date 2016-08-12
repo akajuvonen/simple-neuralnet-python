@@ -85,6 +85,9 @@ class NeuralNet():
         hidden_layer -- The hidden layer values (usually not needed)
         output_layer -- The classification results (array)
         """
+        # If not yet trained
+        if not self.trained:
+            raise NetworkNotTrainedException('The network must be trained before classification')
         hidden_layer = self._sigmoid(np.dot(inputs,self.weights_1))
         output_layer = self._sigmoid(np.dot(hidden_layer,self.weights_2))
         # Return also hidden layer for training
