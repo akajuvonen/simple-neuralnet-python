@@ -2,6 +2,12 @@
 
 import numpy as np
 
+class NetworkNotTrainedException(Exception):
+    """This exception is raised when neural network is used
+    to classify data before it has been trained.
+    """
+    pass
+
 class NeuralNet():
     def __init__(self,hidden_size=4,max_iterations=100000,learning_rate=0.15):
         """The init method.
