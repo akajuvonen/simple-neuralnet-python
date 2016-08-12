@@ -47,6 +47,8 @@ class NeuralNet():
 
     def train(self,train_in,train_out):
         """Train the neural network using a training set."""
+        # Set the trained flag to True
+        self.trained = True
         # Init weights between -1 and 1
         # Weights between input and hidden layer
         # Notice that the shape tuple is inverted here using [::-1]
@@ -71,8 +73,6 @@ class NeuralNet():
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
-        # Set the trained flag to True
-        self.trained = True
 
 
     def classify(self,inputs,training=False):
