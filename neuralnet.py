@@ -8,6 +8,10 @@ class NetworkNotTrainedException(Exception):
     """
     pass
 
+class TrainingNotSuccessfulException(Exception):
+    """Raised when the calculated MSE is too large after training."""
+    pass
+
 class NeuralNet():
     def __init__(self,hidden_size=4,max_iterations=100000,learning_rate=0.15):
         """The init method.
