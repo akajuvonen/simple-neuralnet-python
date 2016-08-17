@@ -77,6 +77,9 @@ class NeuralNet():
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
+        # If training was not successful = MSE too large
+        if mse > 0.1:
+            raise TrainingNotSuccessfulException('Mean squared error is too large, training was not successful')
 
 
     def classify(self,inputs,training=False):
