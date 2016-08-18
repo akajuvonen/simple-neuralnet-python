@@ -27,6 +27,11 @@ class NeuralNet():
         self.hidden_size = hidden_size
         # Is the network already trained
         self.trained = False
+        # What is the minimum MSE that we want in order to consider
+        # the training successful, i.e., if MSE is too large, the network
+        # did not train very well using the current training data.
+        # For now this limit is completely arbitrary.
+        self.mse_limit = 0.01
 
     def _sigmoid(self,x):
         """The sigmoid function (or it's derivative).
@@ -78,7 +83,7 @@ class NeuralNet():
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
         # If training was not successful = MSE too large
-        if mse > 0.1:
+        if mse > self.mse_limit:
             raise TrainingNotSuccessfulException('Mean squared error is too large, training was not successful')
 
 
