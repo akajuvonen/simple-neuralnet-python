@@ -1,6 +1,7 @@
 import unittest
 from neuralnet import NeuralNet
 from neuralnet import NetworkNotTrainedException
+from neuralnet import TrainingNotSuccessfulException
 import numpy as np
 
 class NeuralNetTest(unittest.TestCase):
@@ -55,3 +56,8 @@ class NeuralNetTest(unittest.TestCase):
     def testNotTrainedException(self):
         """Test that NetworkNotTrained exception is correctly raised"""
         self.assertRaises(NetworkNotTrainedException,self.net.classify,(np.array([1]),np.array([1])))
+
+    def testTrainingNotSuccessfulException(self):
+        """Test that exception is raised when training does not succeed"""
+        self.net.max_iterations = 1
+        self.assertRaises(TrainingNotSuccessfulException,self.net.train,np.array([[1,0,0],[0,0,1],[1,0,1],[0,1,1]]),np.array([[1],[0],[1],[0]]))
