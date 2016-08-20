@@ -55,7 +55,7 @@ class NeuralNetTest(unittest.TestCase):
 
     def testNotTrainedException(self):
         """Test that NetworkNotTrained exception is correctly raised"""
-        self.assertRaises(NetworkNotTrainedException,self.net.classify,(np.array([1]),np.array([1])))
+        self.assertRaises(NetworkNotTrainedException,self.net.classify,np.array([1]),np.array([1]))
 
     def testTrainingNotSuccessfulException(self):
         """Test that exception is raised when training does not succeed"""
