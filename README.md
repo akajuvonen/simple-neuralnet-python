@@ -12,4 +12,4 @@ To use the network as a library, import it. Then create a class instance, you ca
 The simplest way to run tests is running `nosetests -v` in the main directory. Nose must be installed for this to work. If the tests (this or Iris data test) cannot find the file `neuralnet.py`, you may need to export the neural net main folder to `PYTHONPATH` (on Linux).
 
 ## Iris data test
-In the folder `tests/` there is a file `iris_test.py`. Run this using `python iris_test.py`. It will test the network using Iris dataset and print the percentage of correct classifications.
+In the folder `tests/` there is a file `iris_test.py`. Run this using `python iris_test.py`. It will test the network using Iris dataset and print the percentage of correct classifications. If everything is working correctly, the results should be at least 95% accurate.
