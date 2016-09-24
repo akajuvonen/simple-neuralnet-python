@@ -60,7 +60,6 @@ class NeuralNet():
         self.trained = True
         # Init weights between -1 and 1
         # Weights between input and hidden layer
-        # Notice that the shape tuple is inverted here using [::-1]
         self.weights_1 = 2*np.random.random((train_in.shape[1],self.hidden_size))-1
         # Weights between hidden and output layer
         self.weights_2 = 2*np.random.random((self.hidden_size,train_out.shape[1]))-1
