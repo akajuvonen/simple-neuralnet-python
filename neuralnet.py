@@ -53,7 +53,11 @@ class NeuralNet():
         return y*(1-y)
 
     def train(self,train_in,train_out):
-        """Train the neural network using a training set."""
+        """Train the neural network using a training set.
+        Arguments:
+        train_in -- The training data inputs (array)
+        train_out -- Training data expected outputs (array)
+        """
         # Set the trained flag to True
         self.trained = True
         # Init weights between -1 and 1
