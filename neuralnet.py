@@ -16,15 +16,13 @@ class NeuralNet():
     def __init__(self,hidden_size=4,max_iterations=100000,learning_rate=0.15):
         """The init method.
         Arguments:
-        train_in -- Training set inputs (array)
-        train_out -- Training set outputs (array)
         hidden_size -- How many neurons in hidden layer (int)
         iterations -- How many max iterations run in training (int)
         learning_rate -- Smaller LR means smaller jumps when learning
         """
+        self.hidden_size = hidden_size
         self.max_iterations = max_iterations
         self.learning_rate = learning_rate
-        self.hidden_size = hidden_size
         # Is the network already trained
         self.trained = False
         # What is the minimum MSE that we want in order to consider
