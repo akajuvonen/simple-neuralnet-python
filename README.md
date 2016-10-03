@@ -2,6 +2,10 @@
 
 A simple neural network using Python. Made mostly as an experiment and practice.
 
+## Dependencies
+
+The neural network implementation requires only python and numpy. Both python2 and python3 are ok, but numpy must be installed for the corresponding python version. Coming: proper packaging and dependency management.
+
 ## Usage
 
 Currently just run `python neuralnet.py` The networks trains using some training data, then classifies test data. On the command line the testing data outputs are printed. The data used can be seen from `main()`.
