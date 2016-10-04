@@ -5,12 +5,12 @@ run:
 	python neuralnet.py
 
 test:
-	nosetests
+	nosetests -v
 
 iris:
 	PYTHONPATH=$(shell pwd) python tests/iris_test.py
 
 clean:
-	rm -v *.pyc
-	rm -v tests/*.pyc
-	rm -v tools/*.pyc
+	rm -fv *.pyc
+	rm -fv tests/*.pyc
+	rm -fv tools/*.pyc
