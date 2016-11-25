@@ -1,6 +1,6 @@
 # simple-neuralnet-python
 
-A simple neural network using Python. Made mostly as an experiment and practice.
+A simple MLP neural network using Python. Made mostly as an experiment and practice.
 
 ## Installation
 
