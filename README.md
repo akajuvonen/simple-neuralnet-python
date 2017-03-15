@@ -8,7 +8,7 @@ You need to have python, virtualenv and pip installed.
 
 First of all, make sure you are using virtualenv, you will do yourself a big favor. You can create a new environment with `virtualenv env-name`, and activate it by running `source env-name/bin/activate`. After this, follow the instructions below. You can deactivate with command `deactivate` and return to the system python environment.
 
-There is a makefile to make dependency installation easier. Just run `make init` inside of your python virtual environment and it will pull the necessary and tested dependencies using pip.
+There is a makefile to make dependency installation easier. Just run `make init` inside of your python virtual environment and it will pull the necessary and tested dependencies using pip. The required packages are listed in `requirements.txt`.
 
 ## Usage
 
