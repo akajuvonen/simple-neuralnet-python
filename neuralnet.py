@@ -79,7 +79,7 @@ class NeuralNet():
             # Calculate errors and adjustments
             output_error = train_out - output_layer
             # Print the error every 1000 iterations
-            if i % 1000 == 0:
+            if i % 10000 == 0:
                 # Mean squared error
                 mse = np.mean(np.power(output_error, 2))
                 print(mse)
