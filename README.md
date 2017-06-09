@@ -25,9 +25,7 @@ MSE in iteration 70000: 0.000055
 MSE in iteration 80000: 0.000048
 MSE in iteration 90000: 0.000042
 Test data classification results (should be 1 0 1):
-[[1]
- [0]
- [1]]
+1 0 1
 ```
 
 To use the network as a library, import it (currently no installation, so just make sure the file is available somewhere). Then create a class instance, you can see the available init parameters from the code comments. With simplest option: `net = NeuralNet()`, this is with default params. After that you need to train the network: `net.train(inputs,outputs)`. If the training is not successful (mean squared error too large), there will an exception (I know, this is a very crude way to do this but enough for this simple network). You can classify new data using `net.classify(test_data_inputs)`. If you try to classify before the model has been trained, an exception will be raised.
