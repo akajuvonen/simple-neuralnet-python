@@ -82,7 +82,7 @@ class NeuralNet():
             if i % 10000 == 0:
                 # Mean squared error
                 mse = np.mean(np.power(output_error, 2))
-                print(mse)
+                print('MSE in iteration %d: %f' % (i, mse))
             i += 1
             output_adjustment = output_error * self.learning_rate * \
                 self._sigmoid_deriv(output_layer)
