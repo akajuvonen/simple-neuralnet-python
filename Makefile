@@ -12,7 +12,8 @@ test:
 	bin/test.sh
 
 iris:
-	PYTHONPATH=$(shell pwd) python tests/iris_test.py
+	bin/init.sh
+	bin/iris.sh
 
 plot:
 	PYTHONPATH=$(shell pwd) python tools/sigmoid_plotter.py
