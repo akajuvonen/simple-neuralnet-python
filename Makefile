@@ -8,7 +8,8 @@ run:
 	bin/run.sh
 
 test:
-	nosetests -v
+	bin/init.sh
+	bin/test.sh
 
 iris:
 	PYTHONPATH=$(shell pwd) python tests/iris_test.py
