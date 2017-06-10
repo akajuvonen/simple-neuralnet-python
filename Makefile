@@ -4,7 +4,8 @@ init:
 	bin/init.sh
 
 run:
-	python neuralnet.py
+	bin/init.sh
+	bin/run.sh
 
 test:
 	nosetests -v
