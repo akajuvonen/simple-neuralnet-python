@@ -38,4 +38,4 @@ If you want to try the proper test with Iris dataset, run `make iris`. It will t
 
 ## Cleaning
 
-Clean the `*.pyc` files using `make clean`.
+Clean the `*.pyc` files and the virtual environment using `make clean`.
