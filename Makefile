@@ -1,7 +1,7 @@
 all:	init
 
 init:
-	pip install -r requirements.txt
+	bin/init.sh
 
 run:
 	python neuralnet.py
