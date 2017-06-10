@@ -20,3 +20,4 @@ clean:
 	rm -fv *.pyc
 	rm -fv tests/*.pyc
 	rm -fv tools/*.pyc
+	rm -rfv .env/
