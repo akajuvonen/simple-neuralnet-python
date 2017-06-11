@@ -16,7 +16,8 @@ iris:
 	bin/iris.sh
 
 plot:
-	PYTHONPATH=$(shell pwd) python tools/sigmoid_plotter.py
+	bin/init.sh
+	bin/plot.sh
 
 clean:
 	rm -fv *.pyc
