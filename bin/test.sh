@@ -1,5 +1,5 @@
 #!/bin/bash
 
 source .env/bin/activate
-nosetests -v
+nosetests -v --with-coverage --cover-package=neuralnet
 deactivate
