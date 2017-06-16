@@ -12,3 +12,4 @@ scipy==0.18.1
 six==1.10.0
 pep8==1.7.0
 pyflakes==1.5.0
+coverage==4.4.1
