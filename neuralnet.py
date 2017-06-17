@@ -133,12 +133,12 @@ def main():
     # Test data
     test_in = np.array([[1, 0, 1], [0, 1, 0], [1, 1, 1]])
     # Classify
-    train_out = nn.classify(test_in)
+    test_out = nn.classify(test_in)
     # Should print approx. 1 0 1
     print('Test data classification results (should be 1 0 1):')
-    result0 = np.rint(train_out.item(0)).astype(int)
-    result1 = np.rint(train_out.item(1)).astype(int)
-    result2 = np.rint(train_out.item(2)).astype(int)
+    result0 = np.rint(test_out.item(0)).astype(int)
+    result1 = np.rint(test_out.item(1)).astype(int)
+    result2 = np.rint(test_out.item(2)).astype(int)
     print("%d %d %d" % (result0, result1, result2))
 
 if __name__ == '__main__':
