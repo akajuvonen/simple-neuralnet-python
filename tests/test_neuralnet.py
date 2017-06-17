@@ -68,3 +68,20 @@ class NeuralNetTest(unittest.TestCase):
                           np.array([[1, 0, 0], [0, 0, 1],
                                    [1, 0, 1], [0, 1, 1]]),
                           np.array([[1], [0], [1], [0]]))
+
+    def testClassify(self):
+        "Test that neural network classification works"
+        train_in = np.array([[1, 0, 0], [0, 0, 1], [1, 1, 1],
+                             [1, 1, 0], [0, 1, 0], [0, 0, 0]])
+        train_out = np.array([[1], [0], [1], [1], [0], [0]])
+        # Init the network instance
+        nn = NeuralNet()
+        # Train the network
+        nn.train(train_in, train_out)
+        # Test data
+        test_in = np.array([[1, 0, 1], [0, 1, 0], [1, 1, 1]])
+        # Classify
+        test_out = nn.classify(test_in)
+        self.assertEquals(np.rint(test_out.item(0)).astype(int), 1)
+        self.assertEquals(np.rint(test_out.item(1)).astype(int), 0)
+        self.assertEquals(np.rint(test_out.item(2)).astype(int), 1)
