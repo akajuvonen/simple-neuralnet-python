@@ -24,3 +24,4 @@ clean:
 	rm -fv tests/*.pyc
 	rm -fv tools/*.pyc
 	rm -rfv .env/
+	rm -fv .coverage
