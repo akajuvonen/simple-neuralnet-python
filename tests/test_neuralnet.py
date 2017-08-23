@@ -21,7 +21,7 @@ class NeuralNetTest(unittest.TestCase):
         # Should be 0.5
         i = 0
         result = self.net._sigmoid(i)
-        self.assertEquals(result, 0.5)
+        self.assertEqual(result, 0.5)
         # Should be close to 1
         i = 10
         result = self.net._sigmoid(i)
@@ -40,7 +40,7 @@ class NeuralNetTest(unittest.TestCase):
         # Should be 0.25
         i = 0
         result = self.net._sigmoid_deriv(self.net._sigmoid(i))
-        self.assertEquals(result, 0.25)
+        self.assertEqual(result, 0.25)
         # Should be close to 0
         i = 10
         result = self.net._sigmoid_deriv(self.net._sigmoid(i))
@@ -82,6 +82,6 @@ class NeuralNetTest(unittest.TestCase):
         test_in = np.array([[1, 0, 1], [0, 1, 0], [1, 1, 1]])
         # Classify
         test_out = nn.classify(test_in)
-        self.assertEquals(np.rint(test_out.item(0)).astype(int), 1)
-        self.assertEquals(np.rint(test_out.item(1)).astype(int), 0)
-        self.assertEquals(np.rint(test_out.item(2)).astype(int), 1)
+        self.assertEqual(np.rint(test_out.item(0)).astype(int), 1)
+        self.assertEqual(np.rint(test_out.item(1)).astype(int), 0)
+        self.assertEqual(np.rint(test_out.item(2)).astype(int), 1)
