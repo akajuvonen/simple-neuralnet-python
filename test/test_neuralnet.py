@@ -1,8 +1,10 @@
 import unittest
+
+import numpy as np
+
 from simple_neuralnet_python import NeuralNet
 from simple_neuralnet_python.neuralnet import NetworkNotTrainedException
 from simple_neuralnet_python.neuralnet import TrainingNotSuccessfulException
-import numpy as np
 
 
 class NeuralNetTest(unittest.TestCase):
