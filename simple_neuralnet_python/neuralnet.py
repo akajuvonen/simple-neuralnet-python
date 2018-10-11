@@ -139,7 +139,8 @@ def main():
     result0 = np.rint(test_out.item(0)).astype(int)
     result1 = np.rint(test_out.item(1)).astype(int)
     result2 = np.rint(test_out.item(2)).astype(int)
-    print("%d %d %d" % (result0, result1, result2))
+    print(f"{result0} {result1} {result2}")
+
 
 if __name__ == '__main__':
     main()

@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 
-from neuralnet import NeuralNet
+
+from simple_neuralnet_python import NeuralNet
 import matplotlib.pyplot as plt
 
-# Plots sigmoid function and it's derivative using matplotlib
+
+FILENAME = 'sigmoid.png'
 
 
-def main():
+def plot():
+    """Plots sigmoid function and its derivative and
+    saves the figure to a file."""
     # Create the net that includes sigmoid functions
     net = NeuralNet()
 
@@ -25,8 +29,9 @@ def main():
     plt.title('Sigmoid and its derivative')
     plt.grid(True)
     # Save fig and show
-    plt.savefig('sigmoid.png')
-    plt.show()
+    plt.savefig(FILENAME)
+    print(f"Figure saved to file {FILENAME}")
+
 
 if __name__ == '__main__':
-    main()
+    plot()

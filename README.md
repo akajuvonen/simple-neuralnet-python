@@ -1,16 +1,30 @@
 # simple-neuralnet-python
 
-A simple MLP neural network using Python. Made mostly as an experiment and practice.
+A simple MLP neural network using Python.
 
 ## Installation
 
-You need to have python, virtualenv and pip installed.
+It's recommended to install the package inside a clean virtualenv.
+The package is tested using Python 3.6.
 
-There is a makefile to make dependency installation easier. Just run `make init` or `make` and it will pull the necessary and tested dependencies using pip. The required packages are listed in `requirements.txt`. All the scripts use the virtual environment automatically when needed.
+You can install the package using pip:
+
+```
+pip install .
+```
+
+## Tests
+
+Tests can be run with `python setup.py test`.
 
 ## Usage
 
-Run the network from command line using sample data with `make run `. The network will run a simple test and training data example, where it attempts to classify binary values. It also prints the MSE (Mean Squared Error) every 10,000 iterations, so you can see how the training progresses. The expected output will be like the following:
+### Using command line
+
+You can run a basic example with command `neuralnet-run`, which will
+run a basic sanity check using simple example data. It should print
+something similar to the following:
+
 ```
 MSE in iteration 0: 0.254802
 MSE in iteration 10000: 0.000473
@@ -26,18 +40,31 @@ Test data classification results (should be 1 0 1):
 1 0 1
 ```
 
-To use the network as a library, import it (currently no installation, so just make sure the file is available somewhere). Then create a class instance, you can see the available init parameters from the code comments. With simplest option: `net = NeuralNet()`, this is with default params. After that you need to train the network: `net.train(inputs,outputs)`. If the training is not successful (mean squared error too large), there will an exception (I know, this is a very crude way to do this but enough for this simple network). You can classify new data using `net.classify(test_data_inputs)`. If you try to classify before the model has been trained, an exception will be raised.
+### Importing module
 
-## Tests
+You can import the neural net as a module and use it like this example:
 
-Run `make test` to run unit tests with nose.
+```python
+from simple_neuralnet_python import NeuralNet
 
-If you want to try the proper test with Iris dataset, run `make iris`. It will train and classify using the dataset and print out classification accuracy (should be between 90-100%).
 
-## Plotting the sigmoid function
+# Training data inputs and outputs
+# Notice that the outputs correlate to the first element of each data point
+train_in = np.array([[1, 0, 0], [0, 0, 1], [1, 1, 1],
+                     [1, 1, 0], [0, 1, 0], [0, 0, 0]])
+train_out = np.array([[1], [0], [1], [1], [0], [0]])
+# Init the network instance
+nn = NeuralNet()
+# Train the network
+nn.train(train_in, train_out)
+# Test data
+test_in = np.array([[1, 0, 1], [0, 1, 0], [1, 1, 1]])
+# Classify
+test_out = nn.classify(test_in)
+# Should print approx. 1 0 1
+```
 
-For visualizing how the sigmoid function works, you can run `make plot` the draw a figure of the function. Note that Python Tkinter is needed for this, and it cannot be installed using pip. Therefore, virtualenv cannot install this. In Ubuntu, installing the package `python-tk` accomplishes this. It might be necessary to copy or symlink tcl and tk directories inside `.env/lib`.
+## Utils
 
-## Cleaning
-
-Clean the `*.pyc` files and the virtual environment using `make clean`.
+Package also includes a tool to visualize the used sigmoid function and its derivative.
+You can run it by invoking `neuralnet-sigmoid-plotter`.

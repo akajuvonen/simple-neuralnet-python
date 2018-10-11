@@ -1,7 +1,7 @@
 import unittest
-from neuralnet import NeuralNet
-from neuralnet import NetworkNotTrainedException
-from neuralnet import TrainingNotSuccessfulException
+from simple_neuralnet_python import NeuralNet
+from simple_neuralnet_python.neuralnet import NetworkNotTrainedException
+from simple_neuralnet_python.neuralnet import TrainingNotSuccessfulException
 import numpy as np
 
 
