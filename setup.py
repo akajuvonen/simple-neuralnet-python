@@ -8,7 +8,7 @@ setup(
     author='Antti Juvonen',
     packages=find_packages(),
     python_requires='>=3.6',
-    install_requires=['numpy','matplotlib'],
+    install_requires=['numpy','matplotlib', 'attrs'],
     tests_require=['pytest'],
     setup_requires=['pytest-runner'],
     scripts=['bin/neuralnet-sigmoid-plotter'],
