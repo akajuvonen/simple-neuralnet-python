@@ -5,7 +5,7 @@ A simple MLP neural network using Python.
 ## Installation
 
 It's recommended to install the package inside a clean virtualenv.
-The package is tested using Python 3.6.
+The package has been tested with Python versions `3.6` and `3.8`.
 
 You can install the package using pip:
 
