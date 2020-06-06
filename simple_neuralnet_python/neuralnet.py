@@ -1,4 +1,5 @@
-import numpy as np
+import numpy as np  # type: ignore
+import attr
 
 
 class NetworkNotTrainedException(Exception):
@@ -13,26 +14,13 @@ class TrainingNotSuccessfulException(Exception):
     pass
 
 
+@attr.s(auto_attribs=True)
 class NeuralNet():
-
-    def __init__(self, hidden_size=4, max_iterations=100000,
-                 learning_rate=0.15):
-        """The init method.
-        Arguments:
-        hidden_size -- How many neurons in hidden layer (int)
-        iterations -- How many max iterations run in training (int)
-        learning_rate -- Smaller LR means smaller jumps when learning
-        """
-        self.hidden_size = hidden_size
-        self.max_iterations = max_iterations
-        self.learning_rate = learning_rate
-        # Is the network already trained
-        self.trained = False
-        # What is the minimum MSE that we want in order to consider
-        # the training successful, i.e., if MSE is too large, the network
-        # did not train very well using the current training data.
-        # For now this limit is completely arbitrary.
-        self.mse_limit = 0.01
+    hidden_size: np.ndarray = 4
+    max_iterations: int = 100000
+    learning_rate: float = 0.15
+    trained: bool = attr.ib(init=False, default=False)
+    mse_limit: float = attr.ib(init=False, default=0.01)
 
     def _sigmoid(self, x):
         """The sigmoid function (or it's derivative).
@@ -134,7 +122,7 @@ def main():
     results = nn.classify(test_in)
     print('Test data classification results (should be 1 0 1):')
     for result in results:
-        print(np.rint(result[0]))
+        print(int(np.rint(result[0])))
 
 
 if __name__ == '__main__':
