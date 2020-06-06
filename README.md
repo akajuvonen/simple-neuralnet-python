@@ -17,6 +17,12 @@ pip install .
 
 Tests can be run with `python setup.py test`.
 
+Alternatively:
+```
+pip install -r requirements_test.txt
+pytest -v test/
+```
+
 ## Usage
 
 ### Using command line
