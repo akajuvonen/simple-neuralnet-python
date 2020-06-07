@@ -1,5 +1,3 @@
-import unittest
-
 import numpy as np
 
 from simple_neuralnet_python import NeuralNet
@@ -21,6 +19,7 @@ def test_sigmoid():
     result = net._sigmoid(i)
     assert result > .9
 
+
 def test_sigmoid_derivative():
     """Sigmoid deritative tests"""
     net = NeuralNet(1, 3)
@@ -36,6 +35,7 @@ def test_sigmoid_derivative():
     i = 10
     result = net._sigmoid_deriv(net._sigmoid(i))
     assert result < .1
+
 
 def test_classify():
     "Test that neural network classification works"
