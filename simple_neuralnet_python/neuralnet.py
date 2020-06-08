@@ -18,7 +18,7 @@ class NeuralNet():
         # Weights between hidden and output layer
         self.weights_2 = 2 * np.random.random((self.hidden_size, self.output_size)) - 1
 
-    def _sigmoid(self, x):
+    def _sigmoid(self, x: np.ndarray):
         """The sigmoid function (or it's derivative).
         Arguments:
         x -- The weighted sum of an input
@@ -27,7 +27,7 @@ class NeuralNet():
         """
         return 1 / (1 + np.exp(-x))
 
-    def _sigmoid_deriv(self, y):
+    def _sigmoid_deriv(self, y: np.ndarray):
         """The sigmoid derivative function.
         Arguments:
         y -- The neural network outputs. Notice that
@@ -39,7 +39,7 @@ class NeuralNet():
         """
         return y * (1 - y)
 
-    def train(self, train_in, train_out):
+    def train(self, train_in: np.ndarray, train_out: np.ndarray):
         """Train the neural network using a training set.
         Arguments:
         train_in -- The training data inputs (array)
@@ -66,7 +66,7 @@ class NeuralNet():
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
 
-    def classify(self, inputs, training=False):
+    def classify(self, inputs: np.ndarray, training: bool = False):
         """Classify given data using the neural network.
         Arguments:
         inputs -- The input data (array)
