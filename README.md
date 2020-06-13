@@ -74,3 +74,16 @@ test_out = nn.classify(test_in)
 
 Package also includes a tool to visualize the used sigmoid function and its derivative.
 You can run it by invoking `neuralnet-sigmoid-plotter`.
+
+
+## Changelog
+- **2.0**
+  - Breaking change: API slightly changed
+  - Network is initialized randomly when created
+  - Simplified tests and uses pytest now
+  - Attrs and typing
+  - Small improvements: better `.gitignore`, docs
+- **1.1.0**
+  - Restructured and cleaned up the project
+- **1.0**
+  - Initial version
