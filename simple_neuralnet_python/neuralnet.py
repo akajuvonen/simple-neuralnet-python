@@ -1,40 +1,24 @@
-import numpy as np
+import numpy as np  # type: ignore
+import attr
 
 
-class NetworkNotTrainedException(Exception):
-    """This exception is raised when neural network is used
-    to classify data before it has been trained.
-    """
-    pass
-
-
-class TrainingNotSuccessfulException(Exception):
-    """Raised when the calculated MSE is too large after training."""
-    pass
-
-
+@attr.s(auto_attribs=True)
 class NeuralNet():
+    input_size: int
+    output_size: int
+    hidden_size: int = 4
+    max_iterations: int = 100000
+    learning_rate: float = 0.15
+    weights_1: np.ndarray = attr.ib(init=False)
+    weights_2: np.ndarray = attr.ib(init=False)
 
-    def __init__(self, hidden_size=4, max_iterations=100000,
-                 learning_rate=0.15):
-        """The init method.
-        Arguments:
-        hidden_size -- How many neurons in hidden layer (int)
-        iterations -- How many max iterations run in training (int)
-        learning_rate -- Smaller LR means smaller jumps when learning
-        """
-        self.hidden_size = hidden_size
-        self.max_iterations = max_iterations
-        self.learning_rate = learning_rate
-        # Is the network already trained
-        self.trained = False
-        # What is the minimum MSE that we want in order to consider
-        # the training successful, i.e., if MSE is too large, the network
-        # did not train very well using the current training data.
-        # For now this limit is completely arbitrary.
-        self.mse_limit = 0.01
+    def __attrs_post_init__(self):
+        # Random weights between input and hidden layer
+        self.weights_1 = 2 * np.random.random((self.input_size, self.hidden_size)) - 1
+        # Weights between hidden and output layer
+        self.weights_2 = 2 * np.random.random((self.hidden_size, self.output_size)) - 1
 
-    def _sigmoid(self, x):
+    def _sigmoid(self, x: np.ndarray):
         """The sigmoid function (or it's derivative).
         Arguments:
         x -- The weighted sum of an input
@@ -43,7 +27,7 @@ class NeuralNet():
         """
         return 1 / (1 + np.exp(-x))
 
-    def _sigmoid_deriv(self, y):
+    def _sigmoid_deriv(self, y: np.ndarray):
         """The sigmoid derivative function.
         Arguments:
         y -- The neural network outputs. Notice that
@@ -55,21 +39,12 @@ class NeuralNet():
         """
         return y * (1 - y)
 
-    def train(self, train_in, train_out):
+    def train(self, train_in: np.ndarray, train_out: np.ndarray):
         """Train the neural network using a training set.
         Arguments:
         train_in -- The training data inputs (array)
         train_out -- Training data expected outputs (array)
         """
-        # Set the trained flag to True
-        self.trained = True
-        # Init weights between -1 and 1
-        # Weights between input and hidden layer
-        self.weights_1 = 2 * \
-            np.random.random((train_in.shape[1], self.hidden_size)) - 1
-        # Weights between hidden and output layer
-        self.weights_2 = 2 * \
-            np.random.random((self.hidden_size, train_out.shape[1])) - 1
         i = 0
         for _ in range(self.max_iterations):
             # First, classify the training data using the network
@@ -90,12 +65,8 @@ class NeuralNet():
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
-        # If training was not successful = MSE too large
-        if mse > self.mse_limit:
-            raise TrainingNotSuccessfulException('Mean squared error is too \
-                    large, training was not successful')
 
-    def classify(self, inputs, training=False):
+    def classify(self, inputs: np.ndarray, training: bool = False):
         """Classify given data using the neural network.
         Arguments:
         inputs -- The input data (array)
@@ -105,10 +76,6 @@ class NeuralNet():
         hidden_layer -- The hidden layer values (usually not needed)
         output_layer -- The classification results (array)
         """
-        # If not yet trained
-        if not self.trained:
-            raise NetworkNotTrainedException('The network must be trained \
-                    before classification')
         hidden_layer = self._sigmoid(np.dot(inputs, self.weights_1))
         output_layer = self._sigmoid(np.dot(hidden_layer, self.weights_2))
         # Return also hidden layer for training
@@ -125,19 +92,16 @@ def main():
                          [1, 1, 0], [0, 1, 0], [0, 0, 0]])
     train_out = np.array([[1], [0], [1], [1], [0], [0]])
     # Init the network instance
-    nn = NeuralNet()
+    nn = NeuralNet(input_size=3, output_size=1)
     # Train the network
     nn.train(train_in, train_out)
     # Test data
     test_in = np.array([[1, 0, 1], [0, 1, 0], [1, 1, 1]])
     # Classify
-    test_out = nn.classify(test_in)
-    # Should print approx. 1 0 1
+    results = nn.classify(test_in)
     print('Test data classification results (should be 1 0 1):')
-    result0 = np.rint(test_out.item(0)).astype(int)
-    result1 = np.rint(test_out.item(1)).astype(int)
-    result2 = np.rint(test_out.item(2)).astype(int)
-    print(f"{result0} {result1} {result2}")
+    for result in results:
+        print(int(np.rint(result[0])))
 
 
 if __name__ == '__main__':

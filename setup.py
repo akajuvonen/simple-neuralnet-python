@@ -3,14 +3,12 @@ from setuptools import setup, find_packages
 
 setup(
     name='simple-neuralnet-python',
-    version='1.1.0',
+    version='2.0.0',
     description='Simple MLP neural network',
     author='Antti Juvonen',
     packages=find_packages(),
     python_requires='>=3.6',
-    install_requires=['numpy','matplotlib'],
-    tests_require=['pytest'],
-    setup_requires=['pytest-runner'],
+    install_requires=['numpy','matplotlib', 'attrs'],
     scripts=['bin/neuralnet-sigmoid-plotter'],
     entry_points = {
         'console_scripts': [

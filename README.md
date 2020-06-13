@@ -5,7 +5,7 @@ A simple MLP neural network using Python.
 ## Installation
 
 It's recommended to install the package inside a clean virtualenv.
-The package is tested using Python 3.6.
+The package has been tested with Python versions `3.6` and `3.8`.
 
 You can install the package using pip:
 
@@ -15,7 +15,10 @@ pip install .
 
 ## Tests
 
-Tests can be run with `python setup.py test`.
+```
+pip install -r requirements_test.txt
+pytest -v test/
+```
 
 ## Usage
 
@@ -68,3 +71,16 @@ test_out = nn.classify(test_in)
 
 Package also includes a tool to visualize the used sigmoid function and its derivative.
 You can run it by invoking `neuralnet-sigmoid-plotter`.
+
+
+## Changelog
+- **2.0**
+  - Breaking change: API slightly changed
+  - Network is initialized randomly when created
+  - Simplified tests and uses pytest now
+  - Attrs and typing
+  - Small improvements: better `.gitignore`, docs
+- **1.1.0**
+  - Restructured and cleaned up the project
+- **1.0**
+  - Initial version
