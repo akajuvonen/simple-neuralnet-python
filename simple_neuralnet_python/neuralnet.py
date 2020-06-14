@@ -1,5 +1,7 @@
-import numpy as np  # type: ignore
 import attr
+import numpy as np  # type: ignore
+
+from simple_neuralnet_python.sigmoid_tools import sigmoid, sigmoid_derivative
 
 
 @attr.s(auto_attribs=True)
@@ -17,27 +19,6 @@ class NeuralNet():
         self.weights_1 = 2 * np.random.random((self.input_size, self.hidden_size)) - 1
         # Weights between hidden and output layer
         self.weights_2 = 2 * np.random.random((self.hidden_size, self.output_size)) - 1
-
-    def _sigmoid(self, x: np.ndarray):
-        """The sigmoid function (or it's derivative).
-        Arguments:
-        x -- The weighted sum of an input
-        Returns:
-        The sigmoid function value.
-        """
-        return 1 / (1 + np.exp(-x))
-
-    def _sigmoid_deriv(self, y: np.ndarray):
-        """The sigmoid derivative function.
-        Arguments:
-        y -- The neural network outputs. Notice that
-        these values have already been calculated using
-        the sigmoid function. An actual sigmoid derivative
-        should be sigmoid(x)*(1-sigmoid(x)).
-        Return:
-        The sigmoid derivative.
-        """
-        return y * (1 - y)
 
     def train(self, train_in: np.ndarray, train_out: np.ndarray):
         """Train the neural network using a training set.
@@ -58,10 +39,10 @@ class NeuralNet():
                 print('MSE in iteration %d: %f' % (i, mse))
             i += 1
             output_adjustment = output_error * self.learning_rate * \
-                self._sigmoid_deriv(output_layer)
+                sigmoid_derivative(output_layer)
             hidden_error = output_adjustment.dot(self.weights_2.T)
             hidden_adjustment = hidden_error * self.learning_rate * \
-                self._sigmoid_deriv(hidden_layer)
+                sigmoid_derivative(hidden_layer)
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
@@ -76,8 +57,8 @@ class NeuralNet():
         hidden_layer -- The hidden layer values (usually not needed)
         output_layer -- The classification results (array)
         """
-        hidden_layer = self._sigmoid(np.dot(inputs, self.weights_1))
-        output_layer = self._sigmoid(np.dot(hidden_layer, self.weights_2))
+        hidden_layer = sigmoid(np.dot(inputs, self.weights_1))
+        output_layer = sigmoid(np.dot(hidden_layer, self.weights_2))
         # Return also hidden layer for training
         if training:
             return hidden_layer, output_layer
