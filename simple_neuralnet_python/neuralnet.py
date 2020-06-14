@@ -1,6 +1,6 @@
 import numpy as np  # type: ignore
 import attr
-from simple_neuralnet_python.sigmoid import sigmoid, sigmoid_derivative
+from simple_neuralnet_python.sigmoid_tools import sigmoid, sigmoid_derivative
 
 
 @attr.s(auto_attribs=True)
