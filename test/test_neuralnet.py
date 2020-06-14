@@ -3,40 +3,6 @@ import numpy as np
 from simple_neuralnet_python import NeuralNet
 
 
-def test_sigmoid():
-    """Sigmoid function tests"""
-    # Sigmoid function value should be close to 0
-    net = NeuralNet(3, 1)
-    i = -10
-    result = net._sigmoid(i)
-    assert result < .1
-    # Should be 0.5
-    i = 0
-    result = net._sigmoid(i)
-    assert result == .5
-    # Should be close to 1
-    i = 10
-    result = net._sigmoid(i)
-    assert result > .9
-
-
-def test_sigmoid_derivative():
-    """Sigmoid deritative tests"""
-    net = NeuralNet(1, 3)
-    # Should be close to 0
-    i = -10
-    result = net._sigmoid_deriv(net._sigmoid(i))
-    assert result < .1
-    # Should be 0.25
-    i = 0
-    result = net._sigmoid_deriv(net._sigmoid(i))
-    assert result == .25
-    # Should be close to 0
-    i = 10
-    result = net._sigmoid_deriv(net._sigmoid(i))
-    assert result < .1
-
-
 def test_classify():
     "Test that neural network classification works"
     train_in = np.array([[1, 0, 0], [0, 0, 1], [1, 1, 1],
