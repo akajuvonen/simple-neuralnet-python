@@ -1,5 +1,6 @@
-import numpy as np  # type: ignore
 import attr
+import numpy as np  # type: ignore
+
 from simple_neuralnet_python.sigmoid_tools import sigmoid, sigmoid_derivative
 
 
