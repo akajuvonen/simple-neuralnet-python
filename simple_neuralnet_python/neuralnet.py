@@ -39,11 +39,11 @@ class NeuralNet():
                 print('MSE in iteration %d: %f' % (i, mse))
             i += 1
             output_adjustment = output_error * self.learning_rate * sigmoid_derivative(output_layer)
-            hidden_error = output_adjustment.dot(self.weights_2.T)
+            hidden_error = output_adjustment @ self.weights_2.T
             hidden_adjustment = hidden_error * self.learning_rate * sigmoid_derivative(hidden_layer)
             # Actually adjust the weights
-            self.weights_2 += hidden_layer.T.dot(output_adjustment)
-            self.weights_1 += train_in.T.dot(hidden_adjustment)
+            self.weights_2 += hidden_layer.T @ output_adjustment
+            self.weights_1 += train_in.T @ hidden_adjustment
 
     def classify(self, inputs: np.ndarray, training: bool = False):
         """Classify given data using the neural network.
@@ -55,8 +55,8 @@ class NeuralNet():
         hidden_layer -- The hidden layer values (usually not needed)
         output_layer -- The classification results (array)
         """
-        hidden_layer = sigmoid(np.dot(inputs, self.weights_1))
-        output_layer = sigmoid(np.dot(hidden_layer, self.weights_2))
+        hidden_layer = sigmoid(inputs @ self.weights_1)
+        output_layer = sigmoid(hidden_layer @ self.weights_2)
         # Return also hidden layer for training
         if training:
             return hidden_layer, output_layer
