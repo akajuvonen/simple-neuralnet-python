@@ -38,11 +38,9 @@ class NeuralNet():
                 mse = np.mean(np.power(output_error, 2))
                 print('MSE in iteration %d: %f' % (i, mse))
             i += 1
-            output_adjustment = output_error * self.learning_rate * \
-                sigmoid_derivative(output_layer)
+            output_adjustment = output_error * self.learning_rate * sigmoid_derivative(output_layer)
             hidden_error = output_adjustment.dot(self.weights_2.T)
-            hidden_adjustment = hidden_error * self.learning_rate * \
-                sigmoid_derivative(hidden_layer)
+            hidden_adjustment = hidden_error * self.learning_rate * sigmoid_derivative(hidden_layer)
             # Actually adjust the weights
             self.weights_2 += hidden_layer.T.dot(output_adjustment)
             self.weights_1 += train_in.T.dot(hidden_adjustment)
